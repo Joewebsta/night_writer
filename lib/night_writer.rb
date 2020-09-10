@@ -1,12 +1,12 @@
-file_names = { input: ARGV[0], output: ARGV[1] }
+file_names = {
+  input: ARGV[0],
+  output: ARGV[1]
+}
 
 output_file_name = file_names[:output]
 
-input_file = File.open(file_names[:input], 'r')
-output_file = File.open(file_names[:output], 'w')
+input_file_content = File.open(file_names[:input]).read
 
-content = input_file.read.strip
-output_file.write(content)
-output_file.close
+File.open(file_names[:output], 'w') { |file| file.write(input_file_content) }
 
-puts "Created '#{output_file_name}'' containing #{content.length} characters."
+puts "Created '#{output_file_name}'' containing #{input_file_content.length} characters."
