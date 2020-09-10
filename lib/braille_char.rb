@@ -5,6 +5,10 @@ class BrailleChar
     @letter = letter
   end
 
+  def convert
+    dictionary[letter]
+  end
+
   def dictionary
     {
       'a' => "0.\n..\n..",
