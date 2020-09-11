@@ -36,16 +36,16 @@ describe BrailleConverter do
     context 'when an uppercase character' do
       let(:text) { 'A' }
 
-      skip it 'returns braille' do
-        expect(subject.convert).to eql("0.0.\n..0.\n....")
+      it 'returns braille' do
+        expect(subject.convert).to eql("..0.\n....\n.0..")
       end
     end
 
     context 'when two uppercase characters' do
       let(:text) { 'AB' }
 
-      skip it 'returns braille' do
-        expect(subject.convert).to eql("0.0.\n..0.\n....")
+      it 'returns braille' do
+        expect(subject.convert).to eql("..0...0.\n......0.\n.0...0..")
       end
     end
 
