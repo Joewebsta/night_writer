@@ -78,6 +78,14 @@ describe BrailleChar do
       end
     end
 
+    context 'when an uppercase letter' do
+      let(:text) { 'A' }
+
+      it 'converts to braille' do
+        expect(subject.convert).to eql('..0......0..')
+      end
+    end
+
     context 'when a special character' do
       let(:text) { '!' }
 

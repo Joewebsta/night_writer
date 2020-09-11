@@ -6,7 +6,8 @@ class BrailleChar
   end
 
   def convert
-    dictionary[letter]
+    # require 'pry'; binding.pry
+    uppercase? ? '..0......0..' : dictionary[letter]
   end
 
   def uppercase?
