@@ -19,7 +19,53 @@ describe BrailleChar do
     let(:text) { 'a' }
 
     it 'returns a hash of english and braille letters' do
-      dictionary_hash = { 'a' => '0.....', 'b' => '0.0...', 'c' => "00\n..\n..", 'd' => "00\n.0\n..", 'e' => "0.\n.0\n..", 'f' => "00\n0.\n..", 'g' => "00\n00\n..", 'h' => "0.\n00\n..", 'i' => ".0\n0.\n..", 'j' => ".0\n00\n..", 'k' => "0.\n..\n0.", 'l' => "0.\n0.\n0.", 'm' => "00\n..\n0.", 'n' => "00\n.0\n0.", 'o' => "0.\n.0\n0.", 'p' => "00\n0.\n0.", 'q' => "00\n00\n0.", 'r' => "0.\n00\n0.", 's' => ".0\n0.\n0.", 't' => ".0\n00\n0.", 'u' => "0.\n..\n00", 'v' => "0.\n0.\n00", 'w' => ".0\n00\n.0", 'x' => "00\n..\n00", 'y' => "00\n.0\n00", 'z' => "..\n0.\n00", '!' => "..\n00\n0.", "'" => "..\n..\n0.", ',' => "..\n0.\n..", '-' => "..\n..\n00", '.' => "..\n00\n.0", '?' => "..\n.0\n00", ' ' => "..\n..\n.." }
+      dictionary_hash =
+        {
+          'a' => '0.....',
+          'b' => '0.0...',
+          'c' => '00....',
+          'd' => '00.0..',
+          'e' => '0..0..',
+          'f' => '000...',
+          'g' => '0000..',
+          'h' => '0.00..',
+          'i' => '.00...',
+          'j' => '.000..',
+          'k' => '0...0.',
+          'l' => '0.0.0.',
+          'm' => '00..0.',
+          'n' => '00.00.',
+          'o' => '0..00.',
+          'p' => '000.0.',
+          'q' => '00000.',
+          'r' => '0.000.',
+          's' => '.00.0.',
+          't' => '.0000.',
+          'u' => '0...00',
+          'v' => '0.0.00',
+          'w' => '.000.0',
+          'x' => '00..00',
+          'y' => '00.000',
+          'z' => '..0.00',
+          '!' => '..000.',
+          "'" => '....0.',
+          ',' => '..0...',
+          '-' => '....00',
+          '.' => '..00.0',
+          '?' => '...000',
+          ' ' => '......'
+          # '#' => ".0000.",
+          # '0' => ".000..",
+          # '1' => "0.....",
+          # '2' => "0.0...",
+          # '3' => "00....",
+          # '4' => "00.0..",
+          # '5' => "0..0..",
+          # '6' => "000...",
+          # '7' => "0000..",
+          # '8' => "0.00..",
+          # '9' => ".00..."
+        }
       expect(subject.dictionary).to eql(dictionary_hash)
     end
   end
@@ -32,11 +78,29 @@ describe BrailleChar do
       end
     end
 
-    context 'a special character' do
+    context 'when a special character' do
       let(:text) { '!' }
 
       it 'converts to braille' do
-        expect(subject.convert).to eql("..\n00\n0.")
+        expect(subject.convert).to eql('..000.')
+      end
+    end
+  end
+
+  describe '#uppercase?' do
+    context 'when an uppercase letter' do
+      let(:text) { 'G' }
+
+      it 'returns true' do
+        expect(subject.uppercase?).to be true
+      end
+    end
+
+    context 'when a lowercase letter' do
+      let(:text) { 'l' }
+
+      it 'returns false' do
+        expect(subject.uppercase?).to be false
       end
     end
   end
