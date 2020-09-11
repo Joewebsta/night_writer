@@ -1,10 +1,10 @@
 require './lib/braille_char'
 
 describe BrailleChar do
-  subject { BrailleChar.new(text.to_s) }
+  subject { BrailleChar.new(letter.to_s) }
 
   describe '#init' do
-    let(:text) { 'a' }
+    let(:letter) { 'a' }
 
     it 'is an instance of BrailleChar' do
       is_expected.to be_a BrailleChar
@@ -16,7 +16,7 @@ describe BrailleChar do
   end
 
   describe '#dictionary' do
-    let(:text) { 'a' }
+    let(:letter) { 'a' }
 
     it 'returns a hash of english and braille letters' do
       dictionary_hash =
@@ -72,14 +72,14 @@ describe BrailleChar do
 
   describe '#convert' do
     context 'when a lower case letter' do
-      let(:text) { 'a' }
+      let(:letter) { 'a' }
       it 'converts to braille' do
         expect(subject.convert).to eql('0.....')
       end
     end
 
     context 'when an uppercase letter' do
-      let(:text) { 'A' }
+      let(:letter) { 'A' }
 
       it 'converts to braille' do
         expect(subject.convert).to eql('..0......0..')
@@ -87,7 +87,7 @@ describe BrailleChar do
     end
 
     context 'when a special character' do
-      let(:text) { '!' }
+      let(:letter) { '!' }
 
       it 'converts to braille' do
         expect(subject.convert).to eql('..000.')
@@ -95,9 +95,27 @@ describe BrailleChar do
     end
   end
 
+  describe '#convert_uppercase' do
+    context 'when a single uppercase letter' do
+      let(:letter) { 'A' }
+
+      it 'returns braille' do
+        expect(subject.convert_uppercase).to eql('..0......0..')
+      end
+    end
+
+    context 'when another single uppercase letter' do
+      let(:letter) { 'Z' }
+
+      it 'returns braille' do
+        expect(subject.convert_uppercase).to eql('......0..000')
+      end
+    end
+  end
+
   describe '#uppercase?' do
     context 'when an uppercase letter' do
-      let(:text) { 'G' }
+      let(:letter) { 'G' }
 
       it 'returns true' do
         expect(subject.uppercase?).to be true
@@ -105,7 +123,7 @@ describe BrailleChar do
     end
 
     context 'when a lowercase letter' do
-      let(:text) { 'l' }
+      let(:letter) { 'l' }
 
       it 'returns false' do
         expect(subject.uppercase?).to be false
