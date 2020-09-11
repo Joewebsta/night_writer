@@ -1,11 +1,11 @@
 require './lib/braille_char'
 
 describe BrailleChar do
-  subject { BrailleChar.new("#{text}") }
+  subject { BrailleChar.new(text.to_s) }
 
   describe '#init' do
     let(:text) { 'a' }
-    
+
     it 'is an instance of BrailleChar' do
       is_expected.to be_a BrailleChar
     end
