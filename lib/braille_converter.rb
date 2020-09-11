@@ -10,10 +10,22 @@ class BrailleConverter
   def convert
     letters = text.chars
     braille_chars = letters.map { |letter| BrailleChar.new(letter).convert }
-    row1 = braille_chars.map { |char| char.length == 12 ? char[0..3] : char[0..1] }.join
-    row2 = braille_chars.map { |char| char.length == 12 ? char[4..7] : char[2..3] }.join
-    row3 = braille_chars.map { |char| char.length == 12 ? char[8..11] : char[4..5] }.join
+    row1 = generate_row(braille_chars, 0, 1)
+    row2 = generate_row(braille_chars, 2, 3)
+    row3 = generate_row(braille_chars, 4, 5)
 
     "#{row1}\n#{row2}\n#{row3}"
+  end
+
+  def generate_row(braille_chars, strt_idx, end_idx)
+    braille_chars.map do |char|
+      if char.length == 6
+        char[strt_idx..end_idx]
+      else
+        new_strt_idx = strt_idx * 2
+        new_end_idx = (strt_idx * 2) + 3
+        char[new_strt_idx..new_end_idx]
+      end
+    end.join
   end
 end

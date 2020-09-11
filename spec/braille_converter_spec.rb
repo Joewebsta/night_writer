@@ -84,4 +84,57 @@ describe BrailleConverter do
       end
     end
   end
+
+  describe '#generate_row' do
+    context 'when a single letter' do
+      let(:text) { 'a' }
+      let(:braille_chars) { ['0.....'] }
+
+      it 'returns two braille characters' do
+        expect(subject.generate_row(braille_chars, 0, 1)).to eql('0.')
+      end
+
+      it 'returns two braille characters' do
+        expect(subject.generate_row(braille_chars, 2, 3)).to eql('..')
+      end
+
+      it 'returns two braille characters' do
+        expect(subject.generate_row(braille_chars, 4, 5)).to eql('..')
+      end
+    end
+
+    context 'when an uppercase letter' do
+      let(:text) { 'A' }
+      let(:braille_chars) { ['..0......0..'] }
+
+      it 'returns four braille characters' do
+        expect(subject.generate_row(braille_chars, 0, 1)).to eql('..0.')
+      end
+
+      it 'returns four braille characters' do
+        expect(subject.generate_row(braille_chars, 2, 3)).to eql('....')
+      end
+
+      it 'returns four braille characters' do
+        expect(subject.generate_row(braille_chars, 4, 5)).to eql('.0..')
+      end
+    end
+
+    context 'when multiple uppercase letters' do
+      let(:text) { 'AB' }
+      let(:braille_chars) { ['..0......0..', '..0...0..0..'] }
+
+      it 'returns four braille characters' do
+        expect(subject.generate_row(braille_chars, 0, 1)).to eql('..0...0.')
+      end
+
+      it 'returns four braille characters' do
+        expect(subject.generate_row(braille_chars, 2, 3)).to eql('......0.')
+      end
+
+      it 'returns four braille characters' do
+        expect(subject.generate_row(braille_chars, 4, 5)).to eql('.0...0..')
+      end
+    end
+  end
 end
