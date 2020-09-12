@@ -46,13 +46,13 @@ describe BrailleChar do
           'w' => '.000.0',
           'x' => '00..00',
           'y' => '00.000',
-          'z' => '..0.00',
+          'z' => '0..000',
           '!' => '..000.',
           "'" => '....0.',
           ',' => '..0...',
           '-' => '....00',
           '.' => '..00.0',
-          '?' => '...000',
+          '?' => '..0.00',
           ' ' => '......'
           # '#' => ".0000.",
           # '0' => ".000..",
@@ -108,7 +108,7 @@ describe BrailleChar do
       let(:letter) { 'Z' }
 
       it 'returns braille' do
-        expect(subject.convert_uppercase).to eql('......0..000')
+        expect(subject.convert_uppercase).to eql('..0....0.000')
       end
     end
   end
