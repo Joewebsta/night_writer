@@ -8,13 +8,15 @@ class BrailleConverter
   end
 
   def convert
+    require 'pry'; binding.pry
     letters = text.chars
     braille_chars = letters.map { |letter| BrailleChar.new(letter).convert }
-    row1 = generate_row(braille_chars, 0, 1)
-    row2 = generate_row(braille_chars, 2, 3)
-    row3 = generate_row(braille_chars, 4, 5)
 
-    "#{row1}\n#{row2}\n#{row3}"
+    # row1 = generate_row(braille_chars, 0, 1)
+    # row2 = generate_row(braille_chars, 2, 3)
+    # row3 = generate_row(braille_chars, 4, 5)
+
+    # "#{row1}\n#{row2}\n#{row3}"
   end
 
   def generate_row(braille_chars, strt_idx, end_idx)

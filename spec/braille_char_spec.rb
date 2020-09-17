@@ -21,60 +21,50 @@ describe BrailleChar do
     it 'returns a hash of english and braille letters' do
       dictionary_hash =
         {
-          'a' => '0.....',
-          'b' => '0.0...',
-          'c' => '00....',
-          'd' => '00.0..',
-          'e' => '0..0..',
-          'f' => '000...',
-          'g' => '0000..',
-          'h' => '0.00..',
-          'i' => '.00...',
-          'j' => '.000..',
-          'k' => '0...0.',
-          'l' => '0.0.0.',
-          'm' => '00..0.',
-          'n' => '00.00.',
-          'o' => '0..00.',
-          'p' => '000.0.',
-          'q' => '00000.',
-          'r' => '0.000.',
-          's' => '.00.0.',
-          't' => '.0000.',
-          'u' => '0...00',
-          'v' => '0.0.00',
-          'w' => '.000.0',
-          'x' => '00..00',
-          'y' => '00.000',
-          'z' => '0..000',
-          '!' => '..000.',
-          "'" => '....0.',
-          ',' => '..0...',
-          '-' => '....00',
-          '.' => '..00.0',
-          '?' => '..0.00',
-          ' ' => '......'
-          # '#' => ".0000.",
-          # '0' => ".000..",
-          # '1' => "0.....",
-          # '2' => "0.0...",
-          # '3' => "00....",
-          # '4' => "00.0..",
-          # '5' => "0..0..",
-          # '6' => "000...",
-          # '7' => "0000..",
-          # '8' => "0.00..",
-          # '9' => ".00..."
+          'a' => ['0.', '..', '..'],
+          'b' => ['0.', '0.', '..'],
+          'c' => ['00', '..', '..'],
+          'd' => ['00', '.0', '..'],
+          'e' => ['0.', '.0', '..'],
+          'f' => ['00', '0.', '..'],
+          'g' => ['00', '00', '..'],
+          'h' => ['0.', '00', '..'],
+          'i' => ['.0', '0.', '..'],
+          'j' => ['.0', '00', '..'],
+          'k' => ['0.', '..', '0.'],
+          'l' => ['0.', '0.', '0.'],
+          'm' => ['00', '..', '0.'],
+          'n' => ['00', '.0', '0.'],
+          'o' => ['0.', '.0', '0.'],
+          'p' => ['00', '0.', '0.'],
+          'q' => ['00', '00', '0.'],
+          'r' => ['0.', '00', '0.'],
+          's' => ['.0', '0.', '0.'],
+          't' => ['.0', '00', '0.'],
+          'u' => ['0.', '..', '00'],
+          'v' => ['0.', '0.', '00'],
+          'w' => ['.0', '00', '.0'],
+          'x' => ['00', '..', '00'],
+          'y' => ['00', '.0', '00'],
+          'z' => ['0.', '.0', '00'],
+          '!' => ['..', '00', '0.'],
+          "'" => ['..', '..', '0.'],
+          ',' => ['..', '0.', '..'],
+          '-' => ['..', '..', '00'],
+          '.' => ['..', '00', '.0'],
+          '?' => ['..', '0.', '00'],
+          ' ' => ['..', '..', '..'],
+          'capital_shift' => ['..', '..', '.0']
         }
       expect(subject.dictionary).to eql(dictionary_hash)
     end
   end
 
-  describe '#convert' do
+  describe '#convert_letter_to_braille' do
     context 'when a lower case letter' do
       let(:letter) { 'a' }
       it 'converts to braille' do
-        expect(subject.convert).to eql('0.....')
+        expect(subject.convert_letter_to_braille).to eql(['0.', '..', '..'])
       end
     end
 
@@ -82,7 +72,15 @@ describe BrailleChar do
       let(:letter) { 'A' }
 
       it 'converts to braille' do
-        expect(subject.convert).to eql('..0......0..')
+        expect(subject.convert_letter_to_braille).to eql([['..', '..', '.0'], ['0.', '..', '..']])
+      end
+    end
+
+    context 'when another single uppercase letter' do
+      let(:letter) { 'Z' }
+
+      it 'returns braille' do
+        expect(subject.convert_letter_to_braille).to eql([['..', '..', '.0'], ['0.', '.0', '00']])
       end
     end
 
@@ -90,7 +88,7 @@ describe BrailleChar do
       let(:letter) { '!' }
 
       it 'converts to braille' do
-        expect(subject.convert).to eql('..000.')
+        expect(subject.convert_letter_to_braille).to eql(['..', '00', '0.'])
       end
     end
   end
@@ -100,7 +98,7 @@ describe BrailleChar do
       let(:letter) { 'A' }
 
       it 'returns braille' do
-        expect(subject.convert_uppercase).to eql('..0......0..')
+        expect(subject.convert_uppercase).to eql([['..', '..', '.0'], ['0.', '..', '..']])
       end
     end
 
@@ -108,7 +106,7 @@ describe BrailleChar do
       let(:letter) { 'Z' }
 
       it 'returns braille' do
-        expect(subject.convert_uppercase).to eql('..0....0.000')
+        expect(subject.convert_uppercase).to eql([['..', '..', '.0'], ['0.', '.0', '00']])
       end
     end
   end
