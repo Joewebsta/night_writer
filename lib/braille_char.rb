@@ -12,7 +12,10 @@ class BrailleChar
   end
 
   def convert_uppercase
-    [dictionary['capital_shift'], dictionary[letter.downcase]]
+    capital_shift = dictionary['capital_shift']
+    braille_char = dictionary[letter.downcase]
+
+    braille_char.map.with_index { |row, i| row.prepend(capital_shift[i]) }
   end
 
   def uppercase?

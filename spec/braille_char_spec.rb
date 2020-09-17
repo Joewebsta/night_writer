@@ -72,7 +72,7 @@ describe BrailleChar do
       let(:letter) { 'A' }
 
       it 'converts to braille' do
-        expect(subject.convert_letter_to_braille).to eql([['..', '..', '.0'], ['0.', '..', '..']])
+        expect(subject.convert_letter_to_braille).to eql(['..0.', '....', '.0..'])
       end
     end
 
@@ -80,7 +80,7 @@ describe BrailleChar do
       let(:letter) { 'Z' }
 
       it 'returns braille' do
-        expect(subject.convert_letter_to_braille).to eql([['..', '..', '.0'], ['0.', '.0', '00']])
+        expect(subject.convert_letter_to_braille).to eql(['..0.', '...0', '.000'])
       end
     end
 
@@ -98,7 +98,7 @@ describe BrailleChar do
       let(:letter) { 'A' }
 
       it 'returns braille' do
-        expect(subject.convert_uppercase).to eql([['..', '..', '.0'], ['0.', '..', '..']])
+        expect(subject.convert_uppercase).to eql(['..0.', '....', '.0..'])
       end
     end
 
@@ -106,7 +106,7 @@ describe BrailleChar do
       let(:letter) { 'Z' }
 
       it 'returns braille' do
-        expect(subject.convert_uppercase).to eql([['..', '..', '.0'], ['0.', '.0', '00']])
+        expect(subject.convert_uppercase).to eql(['..0.', '...0', '.000'])
       end
     end
   end
