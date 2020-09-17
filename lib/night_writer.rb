@@ -8,7 +8,7 @@ file_names = {
 output_file_name = file_names[:output]
 
 input_file_content = File.open(file_names[:input]).read
-braille = BrailleConverter.new(input_file_content).convert
+braille = BrailleConverter.new(input_file_content).convert_to_braille
 
 File.open(file_names[:output], 'w') { |file| file.write(braille) }
 
