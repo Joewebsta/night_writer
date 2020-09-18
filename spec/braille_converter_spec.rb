@@ -21,7 +21,8 @@ describe BrailleConverter do
       let(:text) { 'a' }
 
       it 'returns braille' do
-        expect(subject.convert_to_braille).to eql("0.\n..\n..")
+        # expect(subject.convert_to_braille).to eql("0.\n..\n..")
+        expect(subject.convert_to_braille).to eql([['0.'], ['..'], ['..']])
       end
     end
 
@@ -29,7 +30,8 @@ describe BrailleConverter do
       let(:text) { 'ab' }
 
       it 'returns braille' do
-        expect(subject.convert_to_braille).to eql("0.0.\n..0.\n....")
+        # expect(subject.convert_to_braille).to eql("0.0.\n..0.\n....")
+        expect(subject.convert_to_braille).to eql([['0.', '0.'], ['..', '0.'], ['..', '..']])
       end
     end
 
@@ -37,7 +39,8 @@ describe BrailleConverter do
       let(:text) { 'A' }
 
       it 'returns braille' do
-        expect(subject.convert_to_braille).to eql("..0.\n....\n.0..")
+        expect(subject.convert_to_braille).to eql([['..0.'], ['....'], ['.0..']])
+        # expect(subject.convert_to_braille).to eql("..0.\n....\n.0..")
       end
     end
 
@@ -45,7 +48,8 @@ describe BrailleConverter do
       let(:text) { 'AB' }
 
       it 'returns braille' do
-        expect(subject.convert_to_braille).to eql("..0...0.\n......0.\n.0...0..")
+        # expect(subject.convert_to_braille).to eql("..0...0.\n......0.\n.0...0..")
+        expect(subject.convert_to_braille).to eql([['..0.', '..0.'], ['....', '..0.'], ['.0..', '.0..']])
       end
     end
 
@@ -53,10 +57,10 @@ describe BrailleConverter do
       let(:text) { 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' }
 
       it 'returns braille' do
-        braille =
-          "0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.\n" \
-          "................................................................................\n" \
-          '................................................................................'
+        braille = [["0.", "0.", "0.", "0.", "0.", "0.", "0.", "0.", "0.", "0.", "0.", "0.", "0.", "0.", "0.", "0.", "0.....", "..", "..", "..", "..", "..", "..", "..", "..", "..", "..", "..", "..", "..", "..", "..", ".."]]
+        # "0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.\n" \
+        # "................................................................................\n" \
+        # '................................................................................'
 
         expect(subject.convert_to_braille).to eql(braille)
       end

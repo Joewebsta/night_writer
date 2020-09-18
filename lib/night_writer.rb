@@ -11,4 +11,4 @@ final_braille = braille_converter.format_braille(converted_braille)
 
 File.open(file_out, 'w') { |file| file.write(final_braille) }
 
-puts "Created '#{file_out}' containing #{input_file_content.length} characters."
+puts "Created '#{file_out}' containing #{final_braille.length} characters."

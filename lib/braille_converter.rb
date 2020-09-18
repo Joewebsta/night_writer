@@ -24,14 +24,13 @@ class BrailleConverter
     row2 = braille_row_arr[1].join
     row3 = braille_row_arr[2].join
     output = []
-    require 'pry'; binding.pry
 
     until row1.length.zero?
       output << row1.slice!(0..79) + "\n"
       output << row2.slice!(0..79) + "\n"
       output << row3.slice!(0..79) + "\n"
     end
-    require 'pry'; binding.pry
+
     output.join
   end
 end
